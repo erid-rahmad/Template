@@ -29,10 +29,5 @@ public class TemplateApplication implements CommandLineRunner {
 		log.info("This find all {}",String.valueOf(personJdbc.adperson(new Person(10005,"tarii","berlas", new Date()))));
 		log.info("This find all {}",String.valueOf(personJdbc.update(new Person(10002,"tarii","berlasaxax", new Date()))));
 		log.info("This find all {}",String.valueOf(personJdbc.findall()));
-
-
-
-
-
 	}
 }

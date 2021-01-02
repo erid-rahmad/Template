@@ -4,18 +4,35 @@ import jpa.template.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
 public class PersonJdbc {
 
+    class Personrowmaper implements RowMapper<Person> {
+
+        @Override
+        public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
+           Person person = new Person();
+           person.setId(rs.getInt("id"));
+            person.setName(rs.getString("name"));
+            person.setLocation(rs.getString("location"));
+            person.setBirtdate(rs.getDate("birt_day"));
+           return person;
+        }
+    }
+
     @Autowired
     JdbcTemplate jdbcTemplate;
     public List<Person> findall(){
-        return jdbcTemplate.query("SELECT * FROM PERSON" ,new BeanPropertyRowMapper<Person>(Person.class));
+//        return jdbcTemplate.query("SELECT * FROM PERSON" ,new BeanPropertyRowMapper<Person>(Person.class));
+        return jdbcTemplate.query("SELECT * FROM PERSON" ,new Personrowmaper());
 
     }
 
