@@ -23,7 +23,7 @@ public class PersonJdbc {
            person.setId(rs.getInt("id"));
             person.setName(rs.getString("name"));
             person.setLocation(rs.getString("location"));
-            person.setBirtdate(rs.getDate("birt_day"));
+            person.setBirtdate(rs.getDate("birtdate"));
            return person;
         }
     }
@@ -57,9 +57,4 @@ public class PersonJdbc {
                 +"where id =?",new Object[] {person.getName(),person.getLocation(),
                 new Timestamp( person.getBirtdate().getTime()),person.getId()});
     }
-
-//    INSERT INTO PERSON (ID,NAME,LOCATION,BIRT_DAY)
-//    VALUES (10001,'SERU','DEPOdK',sysdate());
-
-
 }
