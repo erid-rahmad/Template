@@ -1,10 +1,20 @@
 package template8.template28.demo.entity1;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@NamedQuery(name = "selectall", query = "Select c From Course c")
+
 public class Course {
 
 	@Id
@@ -13,27 +23,25 @@ public class Course {
 
 	private String name;
 
-	protected Course() {
-	}
+	@OneToMany(mappedBy = "course")
+	private List<Review> reviews = new ArrayList<>();
 
 	public Course(String name) {
 		this.name = name;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
 	@Override
 	public String toString() {
-		return String.format("Course[%s]", name);
+		return "Course{" +
+				"name='" + name + '\'' +
+				'}';
+	}
+
+	public void addReview(Review reviews) {
+		this.reviews.add(reviews);
+	}
+
+	public void removeReview(Review reviews) {
+		this.reviews.remove(reviews);
 	}
 }
