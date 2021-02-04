@@ -52,7 +52,7 @@ public class DemoApplication implements CommandLineRunner{
 		studentRepository.saveStudentWithPassport();
 
 //		log.info("this find by id {}",studentRepository.findById(20001l));
-//		log.info("this pass",studentRepository.findByIdP(40001l));
+
 		log.info("this stud {}",studentRepository.findById(20001l));
 
 		Student student=studentRepository.findById(20001l);
@@ -64,6 +64,10 @@ public class DemoApplication implements CommandLineRunner{
 		studentRepository.onemany();
 		Course course =studentRepository.findByIdaa(10001l);
 		log.info("courseeee {}",course.getReviews());
+		log.info("this pass {}",studentRepository.findByIdP(40001l));
+		Student student1 = studentRepository.findById(20001l);
+		log.info("this find by id {}",student1.getCourses());
+
 
 
 

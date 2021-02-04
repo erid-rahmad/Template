@@ -85,12 +85,14 @@ public class StudentRepository {
 
 	public void onemany() {
 		Course course = em.find(Course.class, 10001l);
+		Course course1= new  Course("tono");
 		log.info("this course {}",course);
 		log.info("this course 1 {}",course.getReviews());
 		Review review = new Review ("12","asdasd");
 		course.addReview(review);
 		review.setCourse(course);
 		em.persist(review);
+		em.merge(course1);
 	}
 
 	public void findbyname(){

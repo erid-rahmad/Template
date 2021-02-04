@@ -7,6 +7,8 @@ import lombok.ToString;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -25,6 +27,8 @@ public class Student {
     @OneToOne(fetch=FetchType.LAZY)
     private Passport passport;
 
+    @ManyToMany
+    private List<Course> courses = new ArrayList<>();
 
 
     public Student(String name) {
